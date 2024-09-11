@@ -1,0 +1,10 @@
+-
+  name: 获取用户信息接口
+  request:
+    method: get
+    url: /jlcloud/api/login/getUserInfo
+    params:
+     token: ${token}
+    headers:
+      'Content-Type': 'application/json'
+  validate: None

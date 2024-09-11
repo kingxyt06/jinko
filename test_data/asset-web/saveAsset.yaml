@@ -1,0 +1,23 @@
+-
+  name: 资产维护-保存接口
+  request:
+    method: post
+    url: 'asset-web/asset/saveAsset'
+    cookies: ${cookies}
+    json: { "supplierCompanyId": "2818580248779436034", "coreCompanyId": "1818578591995801601",
+            "busiCoreCompanyId": None, "hasOldBuyer": "0", "oldBuyerId": None,
+            "fundsId": None, "assetAmount": "10002", "accountReceivableDueDate": "2024-09-30",
+            "contractTradeName": None, "contractTradeNo": None, "contractTradeSignDate": None,
+            "dataChangeHash": "f3199h8v" }
+  validate: None
+-
+  name: 资产维护-保存接口
+  request:
+    method: post
+    url: 'asset-web/asset/saveAsset'
+    json: { "supplierCompanyId": "2818580248779436034", "coreCompanyId": "1818578591995801601",
+            "busiCoreCompanyId": None, "hasOldBuyer": "0", "oldBuyerId": None,
+            "fundsId": None, "assetAmount": "10002", "accountReceivableDueDate": "2024-09-30",
+            "contractTradeName": None, "contractTradeNo": None, "contractTradeSignDate": None,
+            "dataChangeHash": "f3199h8v" }
+  validate: None

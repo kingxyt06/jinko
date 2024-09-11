@@ -1,0 +1,46 @@
+BASE:
+  dev:
+    agw-url: "https://jinkoscf-agw-dev2.llsstd.com/"
+    sp-url: "https://jinkoscf-sp-dev2.llsstd.com/"
+    redis-url: "dev-redis.lls.com"
+    redis-db: 937
+    agw_message:
+      username: "admin"
+      password: "044b43623811c54cf79a905816370e1119b82c5be02c95c8005640d835f2a521254a2abb36a4b12f5a296134ddc76bfe2ce2074c0d05b0c7b2d74160b8b0294684c77916cb9563fb7f32d43d8c9fac270873883afe3b204d139f8cc5be79b1709d623fff30"
+    sp_qy_message:
+      username: "13049052631"
+      password: "YzKqUXCqfyLh5jxahuAoOOXtTIw7Nivf/eS3NUEuSUALz9GkXruQR/+4EDhDwmmTf43KkKNP9Zu7BCwV0GNoYlYuRgowqidZDJA8IrlqfQJFbodVaCchNHHBMtteCB4K8gt/r5HgC3lqvCZPLQhLJ2bGkcAaNjiVCpKoDm2p/8OM94XgsvgPqzgONq/Q6VawdGO3MwuX+rNln1NyWQM7gkxzX3liLkPrTZYrqQtnK4gESbW+afhYBwk0UXYDmDfMF1CZQDzXYjvxf88M/RxdqT8enl6HVXkoFiIhebNmtNdOUozUjkMlLo00f64Oc4QuLCYtDqGaBNpVTodXpeVoNw=="
+
+  qa:
+    agw-url: "https://jinkoscf-agw-qa.llsstd.com/"
+    sp-url: "https://jinkoscf-sp-qa.llsstd.com/"
+    redis-url: "qa-redis.lls.com"
+    redis-db: 937
+    MySql-Config:
+      mysql-url: "mysql01.qa.lls.com"
+      mysql-user: "root"
+      mysql-pwd: 123456
+    agw_message:
+      username: "admin"
+      password: "04a190586405426815025f1f970924f7af68b344e36b6687bb6d1eca608773b9f9f55467729e03b5985aec151b403404dbd5b22c056755d87964212b454195a0cf2ec45dd9534bf26076ed161651b0ac0a574ee272abca9bc6191baa7eff486b16e72600701dffa3ff78fe906c"
+    sp_qy_message:
+      username: "13902065833"
+      password: "SUUVEwJs8fJfsxo43gNkJkmWGenN8erzHoeBnpVqf3v0vX9QHnoObWoWgVH253xiZozhU9r7etV87V84Fq2LmmYJlB8Wh/t2Meprf+Z8j2yiCt6ILzdTNtp+zpbYndBOhJe3OCylzyjHK+jz1hXEoYHXUuymu3cw0cbiaJjr52BqjJqyhlpzYUysIqclnBJ8WmB+OHu2aDv3QG+DtFTvPwI0lHYkxxzxKuQ0Iix4fALh4yGW1T+CgxJ6oqnmkZslZt25fAgyHF+Px50Yf7kanNa6SNyLgAcMgQILgN42AtiEoCf2kiNcywF3iKomBnboGG5CpRW/UVhSngIwXseLSw=="
+
+
+  v2:
+    agw-url: "https://gdhscf-v2-agw.lianyirong.com.cn/"
+    sp-url: "https://gdhscf-v2-sp.lianyirong.com.cn/"
+    redis-url: "dev-redis.lls.com"
+    redis-db: 129
+    agw_message:
+      username: "13611113333"
+      password: "QvaNA4ZSkZkkig1jmMKXTIivQqWWjA3Ihb0i2dYvLJDAGQ+WnAnGgY++zMk/KjL+6YHMNMSblrCz18iwprEm2ttYJWtGby5q6M44knD0AAfRUiafmqMn8CL6Xm0zcgI2VUwts/vqe7oxxjnGt8LtVM2Ok6cQJVbkVy6JIOjfUQa576HN8VsF/jRagwS9ncysi43ADNLyRXtyErbhnazRRamn7bUn/oBpiMrUztxYhy/lTA2ZRt6KKl9sQlis4/rCnIPPS9oZQBQhcfyGDBHdXuRFh7S5g3Ng6RNzT3Zf8RvcnHkxykhRgNIxQKCvbkKSdWG8tI6Aa1J5MAEt0Jckvg=="
+
+  uat:
+    agw-url: "https://testagw.gdhchain.com.cn/"
+    sp-url: "https://testpc.gdhchain.com.cn/"
+    redis-url: "qa-redis.lls.com"
+    agw_message:
+      username: "13049052666"
+      password: "KJUWSFjt+kW5g+Irb9EVOmpFgqz66DdMHBFETmun4p2VtA1XAo92JpuZFhjKeDRmnNfP4SCxZEyXCSpgBFERmOrLI6eoxtxLYpwCjCs2Ev6yR82ZSooCUJGYIeBz6eNuq+sn84Sf5XrmW+fBsIekDlyzaZOoaBqoK0Jz/es0KWhQG/6JfGXEXh+hV5FDx8+9lgDuoIIwpuiUTZcchLT0teH9vXs8NCNcUNmrd8I9EGDegILkUea62TJUJhdQ1ZU70WgOazRCcz/trele1goX/Xrzlrs/3AuOcyrPE9/sVBDSFdzFGEhMiAo0FlvULTQ9zbCaKJKiQSqtcIdZbDiqyg=="
