@@ -15,6 +15,7 @@
   request:
     method: post
     url: 'asset-web/asset/saveAsset'
+    cookies: ${cookies}
     json: { "supplierCompanyId": "2818580248779436034", "coreCompanyId": "1818578591995801601",
             "busiCoreCompanyId": None, "hasOldBuyer": "0", "oldBuyerId": None,
             "fundsId": None, "assetAmount": "10002", "accountReceivableDueDate": "2024-09-30",

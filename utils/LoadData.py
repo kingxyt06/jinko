@@ -1,7 +1,8 @@
 import json
 
-import requests
 import yaml
+
+from utils.YamlUtil import YamlUtil
 
 
 def load(path):
@@ -14,26 +15,32 @@ def load(path):
 
     if 'name' in data_keys and 'request' in data_keys and 'validate' in data_keys:
         request_keys = data_item['request'].keys()
+        req_kwargs = data_item['request']
         if 'method' in request_keys and 'url' in request_keys:
             print("yaml基础结构检查正确")
-            method = data_item['request'].pop('method')
-            url = data_item['request'].pop('url')
+            method = req_kwargs.pop('method')
+            url = req_kwargs.pop('url')
             # 处理请求参数
-            for key, value in data_item['request'].items():
-                if key in ['params', 'data', 'json', 'headers']:
-                    data_item['request'][key] = replace_value(value)
+            for key, value in req_kwargs.items():
+                if key in ['params', 'data', 'json', 'headers', 'cookies']:
+                    req_kwargs[key] = replace_value(value)
 
 
 def replace_value(data):
-    print(type(data))
+    # print(type(data))
     if isinstance(data, dict) or isinstance(data, list):
         str_data = json.dumps(data)
     else:
         str_data = str(data)
         print(str_data)
-    # for cs in range(str_data.count('${')):
-    #     if '${' in str_data and "}" in str_data:
-    #
+        print(range(1, str_data.count('${') + 1))
+    for cs in range(1, str_data.count('${') + 1):
+        if '${' in str_data and '}' in str_data:
+            start_index = str_data.index('${')
+            end_index = str_data.index('}', start_index)
+            old_value = str_data[start_index:end_index+1]
+            new_value = YamlUtil().read_yaml(old_value)
+            print(new_value)
     return str_data
 
 

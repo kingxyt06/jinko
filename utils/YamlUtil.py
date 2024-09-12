@@ -3,7 +3,7 @@ import os.path
 import yaml
 
 
-class YamlReader:
+class YamlUtil:
     def __init__(self):
         self._data = None
         self._data_all = None
@@ -26,6 +26,7 @@ class YamlReader:
 
     # 读取
     def read_yaml(self, key):
+        print(os.getcwd())
         with open(os.getcwd() + '/extract.yaml', encoding='utf-8', mode='r') as f:
             value = yaml.load(f, yaml.FullLoader)
             return value[key]

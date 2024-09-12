@@ -11,7 +11,7 @@ from config.conf import ConfigReader
 from utils.MysqlUtil import MySQLClient
 from utils.ObjectPool import ObjectPool
 from utils.RequestsUtil import RequestsUtil
-from utils.YamlUtil import YamlReader
+from utils.YamlUtil import YamlUtil
 
 
 @pytest.fixture(scope="session", autouse=True)
@@ -96,7 +96,7 @@ def get_agw_token(init_pools, req_AGW, conf_utill):
              }
 
     print("登录成功----获取token成功")
-    YamlReader().write_yaml({"cookies": token})
+    YamlUtil().write_yaml({"cookies": token})
     return token
 
 

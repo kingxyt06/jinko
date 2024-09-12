@@ -2,7 +2,7 @@ import datetime
 import os
 import time
 
-from utils.YamlUtil import YamlReader
+from utils.YamlUtil import YamlUtil
 
 current_path = os.path.abspath(__file__)
 # print(current_path)
@@ -17,7 +17,7 @@ time_ = datetime.datetime.now().strftime("%Y-%m-%d")
 class ConfigReader:
     def __init__(self):
         self.config_file = config_path + os.sep + "config.yaml"
-        self.config = YamlReader().load_data(self.get_config_file())
+        self.config = YamlUtil().load_data(self.get_config_file())
         self.env = 'qa'
 
     def get_config_file(self):
