@@ -26,7 +26,7 @@ class YamlUtil:
 
     # 读取
     def read_yaml(self, key):
-        print(os.getcwd())
+        # print(os.getcwd())
         with open(os.getcwd() + '/extract.yaml', encoding='utf-8', mode='r') as f:
             value = yaml.load(f, yaml.FullLoader)
             return value[key]

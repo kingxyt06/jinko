@@ -14,7 +14,7 @@ from utils.RequestsUtil import RequestsUtil
 from utils.YamlUtil import YamlUtil
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session", autouse=False)
 def init_pools():
     sqlConf = ConfigReader().get_conf_SqlMessage()
     pools = ObjectPool()
@@ -36,29 +36,29 @@ def init_pools():
 
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session", autouse=False)
 def req_AGW(init_pools):
     return init_pools.get_object('reqA')
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session", autouse=False)
 def req_SP(init_pools):
     return init_pools.get_object('reqS')
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session", autouse=False)
 def conf_utill(init_pools):
     return init_pools.get_object('confU')
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="session", autouse=False)
 def sql_utill(init_pools):
     return init_pools.get_object('sqlU')
 
 
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture(scope="class", autouse=False)
 def get_agw_token(init_pools, req_AGW, conf_utill):
     print("\n前置步骤----获取内管端cookie")
     global token
@@ -86,6 +86,7 @@ def get_agw_token(init_pools, req_AGW, conf_utill):
     login_url = "user-web/user/login"
     login_res = req_AGW.visit(method="POST", url=login_url, json=login_params, headers=headers,
                               cookies=cookies)
+    print(login_res.request.body)
     # print(login_res.json())
     token = login_res.cookies
     token = {"cookies":

@@ -32,16 +32,17 @@ def replace_value(data):
         str_data = json.dumps(data)
     else:
         str_data = str(data)
-        print(str_data)
-        print(range(1, str_data.count('${') + 1))
+
     for cs in range(1, str_data.count('${') + 1):
         if '${' in str_data and '}' in str_data:
             start_index = str_data.index('${')
             end_index = str_data.index('}', start_index)
             old_value = str_data[start_index:end_index+1]
-            new_value = YamlUtil().read_yaml(old_value)
-            print(new_value)
-    return str_data
+            new_value = YamlUtil().read_yaml(old_value[2:-1])
+            str_data = str_data.replace(old_value, new_value)
+    if isinstance(str_data, str):
+        data = json.loads(str_data)
+    return data
 
 
 if __name__ == '__main__':
