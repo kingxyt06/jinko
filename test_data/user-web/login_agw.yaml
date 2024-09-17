@@ -1,0 +1,14 @@
+- name: 内管端-登录
+  request:
+    method: post
+    url: 'user-web/user/login'
+    cookies: { 'CAPTCHAID': "${picCheckCodeKey}" }
+    json: { "password": "0497b91daa2e5489c43b47b9fb842a2849c39aa2942aba7ed39150ce7a86aaa2108f9a4b65e29ec8991f41c913c6d9ae6bee51989fe4a9f146b53a5eca35a857a91bb101e533b748dc6cda2e39d120409bf8e964cc8312963c99a0f6c6510583b8f3ecf20c0dc39eea2347e14e",
+            "picCheckCode": "${picCheckCode}","userName": "admin" }
+  extract:
+    "cookies": { 'CURRENT-LOGIN': '(.*?)',
+                 'llsfn-auth-token-qa': '(.*?)',
+                 'llsfn-auth-token-qa-current-login': '(.*?)',
+                 'llsfn-auth-token-qadate': '(.*?)'
+    }
+  validate: None
