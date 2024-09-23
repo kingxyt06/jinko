@@ -1,4 +1,5 @@
 import json
+import os
 
 import requests
 import yaml
@@ -36,7 +37,9 @@ def send_request(method, url, **kwargs):
     for key, value in kwargs.items():
         if key in ['params', 'data', 'json', 'headers', 'cookies']:
             kwargs[key] = replace_value(value)
+    print(kwargs)
     res = requests.session().request(method, url, **kwargs)
+    print(res.request.body)
     return res
 
 
@@ -67,13 +70,26 @@ def replace_value(data):
                 end_index = str_data.index('}', start_index)
                 old_value = str_data[start_index:end_index + 1]
                 new_value = YamlUtil().read_yaml(old_value[2:-1])
-                str_data = str_data.replace(old_value, new_value)
+                str_data = str_data.replace(old_value, str(new_value))
+                print(f"替换成功",str_data)
+        # if isinstance(str_data, dict) or isinstance(str_data, list):
+        #     data = json.loads(str_data)
         if isinstance(str_data, str):
             data = json.loads(str_data)
         return data
 
 
 if __name__ == '__main__':
-    res = YamlUtil().read_data('/test_data/user-web/CheckCode.yaml')
-    print(type(res))
+    # relative_path = "../extract.yaml"
+    # print(os.getcwd())
+    # # print(os.path.abspath(os.getcwd()))
+    # print(os.path.join(os.getcwd(),relative_path))
+
+    current_dir = os.getcwd()
+
+    print(os.path.dirname(current_dir))
+    print(os.path.join(os.path.dirname(current_dir), "extract.yaml"))
+
+    # res = YamlUtil().read_data('/test_data/user-web/CheckCode.yaml')
+    # print(type(res))
     # load('../test_data/user-web/login_agw.yaml')

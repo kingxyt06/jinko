@@ -1,0 +1,9 @@
+-
+  name: 凭证融资额度页-已生效
+  request:
+    cookies: { "${cookies}" }
+    method: POST
+    url: 'limit-web/limit/creditEfectLimitPage'
+    json: {"current":1,"size":10,"asc":[],"desc":[],"queryCondition":{}}
+  extract:
+  validate: None
