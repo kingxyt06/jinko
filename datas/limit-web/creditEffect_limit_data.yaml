@@ -1,0 +1,3 @@
+# DDT(data driver test)数据驱动yaml文件，对应的yaml测试用例文件为：creditEfectLimit.yaml
+- ['name','cookies','current','size','queryCondition','assert_str']
+- ['凭证融资额度页-已生效','1','10','{}','${cookies}','data']
