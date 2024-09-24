@@ -7,29 +7,6 @@ import yaml
 from utils.YamlUtil import YamlUtil
 
 
-def load(path):
-    file = open(path, 'r', encoding='utf-8')
-    data = yaml.load(file, Loader=yaml.FullLoader)
-    print(data)
-    # standard_yaml(data)
-    # 因为读取的yaml数据是列表，需要转化为dict，但这又是个不规则的列表里面嵌着字典，所以需要特殊处理
-    # for data_item in data:
-    #     data_keys = data_item.keys()
-    #     print(f"数据项的键：{data_keys}")
-    #
-    # if 'name' in data_keys and 'request' in data_keys and 'validate' in data_keys:
-    #     request_keys = data_item['request'].keys()
-    #     req_kwargs = data_item['request']
-    #     if 'method' in request_keys and 'url' in request_keys:
-    #         print("yaml基础结构检查正确")
-    #         method = req_kwargs.pop('method')
-    #         url = req_kwargs.pop('url')
-    #         # 处理请求参数
-    #         for key, value in req_kwargs.items():
-    #             if key in ['params', 'data', 'json', 'headers', 'cookies']:
-    #                 req_kwargs[key] = replace_value(value)
-
-
 def send_request(method, url, **kwargs):
     method = str(method).lower()  # 转换小写
     # 基础路径的拼接和替换
@@ -37,7 +14,6 @@ def send_request(method, url, **kwargs):
     for key, value in kwargs.items():
         if key in ['params', 'data', 'json', 'headers', 'cookies']:
             kwargs[key] = replace_value(value)
-    print(kwargs)
     res = requests.session().request(method, url, **kwargs)
     print(res.request.body)
     return res
@@ -71,12 +47,27 @@ def replace_value(data):
                 old_value = str_data[start_index:end_index + 1]
                 new_value = YamlUtil().read_yaml(old_value[2:-1])
                 str_data = str_data.replace(old_value, str(new_value))
-                print(f"替换成功",str_data)
+                print(f"替换成功", str_data)
         # if isinstance(str_data, dict) or isinstance(str_data, list):
         #     data = json.loads(str_data)
         if isinstance(str_data, str):
             data = json.loads(str_data)
         return data
+
+
+def read_testcase(yaml_name):
+    with open(os.path.dirname(os.getcwd()) + '\\test_data\\' + yaml_name, mode='r', encoding='utf-8') as f:
+        caseinfo = yaml.load(f, yaml.FullLoader)
+
+        return caseinfo
+
+
+def read_datas(yaml_name):
+    with open(os.path.dirname(os.getcwd()) + '\\datas\\' + yaml_name, mode='r', encoding='utf-8') as f:
+        datas = yaml.load(f, yaml.FullLoader)
+        if len(datas)>=2:
+            return datas
+
 
 
 if __name__ == '__main__':
@@ -85,11 +76,34 @@ if __name__ == '__main__':
     # # print(os.path.abspath(os.getcwd()))
     # print(os.path.join(os.getcwd(),relative_path))
 
-    current_dir = os.getcwd()
+    # current_dir = os.getcwd()
+    #
+    # print(os.path.dirname(current_dir))
+    # print(os.path.join(os.path.dirname(current_dir), "extract.yaml"))
+    datas = read_datas('limit-web\creditEffect_limit_data.yaml')
+    print(datas)
 
-    print(os.path.dirname(current_dir))
-    print(os.path.join(os.path.dirname(current_dir), "extract.yaml"))
+    res = read_testcase('limit-web\creditEfectLimit.yaml')
+    # print(res[0]['parameterize'])  # {'name-cookies-current-size-queryCondition-assert_str': '/datas/creditEffect_limit_data.yaml'}
 
-    # res = YamlUtil().read_data('/test_data/user-web/CheckCode.yaml')
-    # print(type(res))
-    # load('../test_data/user-web/login_agw.yaml')
+    param_list = []
+    for k, v in res[0]['parameterize'].items():
+        #param_list = ['name', 'cookies', 'current', 'size', 'queryCondition', 'assert_str']
+        param_list = k.split("-")
+        datas_list = read_datas('limit-web\creditEffect_limit_data.yaml')
+        length_flag = True
+        for data in datas_list:
+            if len(data) != len(param_list):
+                length_flag = False
+                break
+
+        new_caseinfo = []
+        if length_flag:
+            for x in range(1, len(datas_list)):
+                print(datas_list[x])
+                for y in range(0, len(datas_list[x])):
+                    print(datas_list[0][y])
+                    if datas_list[0][y] in param_list:
+
+
+

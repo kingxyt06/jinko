@@ -1,9 +1,18 @@
 -
   name: 凭证融资额度页-已生效
+  parameterize:
+    name-cookies-current-size-queryCondition-assert_str: /datas/creditEffect_limit_data.yaml
   request:
-    cookies: { "${cookies}" }
+    cookies:  $ddt{cookies}
     method: POST
     url: 'limit-web/limit/creditEfectLimitPage'
-    json: {"current":1,"size":10,"asc":[],"desc":[],"queryCondition":{}}
+    json:
+      current: $ddt{current}
+      size: $ddt{size}
+      asc: []
+      desc: []
+      queryCondition: $ddt{queryCondition}
   extract:
-  validate: None
+  validate:
+    - equals: { code: 200 }
+    - contains: $ddt{assert_str}
