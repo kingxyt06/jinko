@@ -1,0 +1,14 @@
+-   name: $ddt{name}
+    parameterize:
+      name-cookies-current-size-queryCondition-assert_str: limit-web/creditEffect_limit_data.yaml
+    request:
+      cookies: $ddt{cookies}
+      method: POST
+      url: 'limit-web/limit/creditEfectLimitPage'
+      json:
+        current: $ddt{current}
+        size: $ddt{size}
+        queryCondition: $ddt{queryCondition}
+    validate:
+      - equals: { code: 200 }
+      - contains: $ddt{assert_str}

@@ -18,6 +18,7 @@ class RequestUtill:
         self.session = requests.session()
 
     def standard_yaml(self, caseinfo):
+        print(caseinfo)
         caseinfo_keys = caseinfo.keys()
         # print(caseinfo_keys)
         if 'name' in caseinfo_keys and 'request' in caseinfo_keys and 'validate' in caseinfo_keys:
@@ -38,13 +39,17 @@ class RequestUtill:
         url = self.base_url + url
         for key, value in kwargs.items():
             if key in ['params', 'data', 'json', 'headers', 'cookies']:
+                # print(kwargs[key])
                 kwargs[key] = self.replace_value(value)
+        # print(kwargs[key])
         res = self.session.request(method, url, **kwargs)
         return res
 
     def replace_value(self, data):
-        # print(type(data))
+        print(type(data))
         if data:
+            # 保存数据类型
+            data_type = type(data)
             if isinstance(data, dict) or isinstance(data, list):
                 str_data = json.dumps(data)
             else:
@@ -57,12 +62,16 @@ class RequestUtill:
                     old_value = str_data[start_index:end_index + 1]
                     new_value = YamlUtil().read_yaml(old_value[2:-1])
                     str_data = str_data.replace(old_value, str(new_value))
+                    str_data = str_data.replace("'", '"')
                     print(f"替换成功", str_data)
-            # if isinstance(str_data, dict) or isinstance(str_data, list):
-            #     data = json.loads(str_data)
+
             if isinstance(str_data, str):
+                # str_data.replace("'", '"')
+                # print(str_data)
                 data = json.loads(str_data)
-            return data
+            else:
+                data = data_type(str_data)
+        return data
 
     def assert_result(self, yq_result, return_code, res_json):
         all_flag = 0

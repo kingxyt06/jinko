@@ -1,7 +1,7 @@
 -
-  name: 凭证融资额度页-已生效
+  name: "凭证融资额度页-已生效"
   parameterize:
-    name-cookies-current-size-queryCondition-assert_str: /datas/creditEffect_limit_data.yaml
+    name-cookies-current-size-queryCondition-assert_str: limit-web/creditEffect_limit_data.yaml
   request:
     cookies:  $ddt{cookies}
     method: POST

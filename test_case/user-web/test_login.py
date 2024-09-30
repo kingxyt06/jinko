@@ -4,8 +4,9 @@ import time
 import pytest
 import requests
 
-from utils.LoadData import replace_value, standard_yaml, send_request
+from utils.LoadData import  standard_yaml
 from utils.RedisUtil import RedisUtill
+from utils.RequestUtil import RequestUtill
 from utils.YamlUtil import YamlUtil
 
 
@@ -51,4 +52,4 @@ class TestLogin:
                                 extract_val["cookies"] += f"{k}={ck[k]};"
                             else:
                                 extract_val["cookies"] = f"{k}={ck[k]};"
-            YamlUtil().write_yaml(extract_val)
+            YamlUtil().write_yaml({"cookies": extract_val})
